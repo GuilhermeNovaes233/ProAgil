@@ -31,7 +31,7 @@ namespace ProAgil.Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nome = table.Column<int>(nullable: false),
+                    Nome = table.Column<string>(nullable: true),
                     Resumo = table.Column<int>(nullable: false),
                     ImagemUrl = table.Column<int>(nullable: false),
                     Telefone = table.Column<int>(nullable: false),

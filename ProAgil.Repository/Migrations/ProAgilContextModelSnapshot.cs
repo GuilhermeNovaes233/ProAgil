@@ -88,8 +88,8 @@ namespace ProAgil.Repository.Migrations
                     b.Property<int>("ImagemUrl")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Nome")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Nome")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Resumo")
                         .HasColumnType("INTEGER");

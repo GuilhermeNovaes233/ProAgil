@@ -9,7 +9,7 @@ using ProAgil.Repository;
 namespace ProAgil.Repository.Migrations
 {
     [DbContext(typeof(ProAgilContext))]
-    [Migration("20201025040114_init")]
+    [Migration("20201025045433_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -90,8 +90,8 @@ namespace ProAgil.Repository.Migrations
                     b.Property<int>("ImagemUrl")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Nome")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Nome")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Resumo")
                         .HasColumnType("INTEGER");
