@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using ProAgil.API.Data;
-using ProAgil.API.Models;
+using ProAgil.Domain;
+using ProAgil.Repository;
 
 namespace ProAgil.API.Controllers
 {
@@ -16,8 +12,8 @@ namespace ProAgil.API.Controllers
     [Route("[controller]")]
     public class HomeController : ControllerBase
     {
-        public readonly DataContext _context;
-        public HomeController(DataContext context){
+        public readonly ProAgilContext _context;
+        public HomeController(ProAgilContext context){
             _context = context;
         }
 
@@ -36,7 +32,7 @@ namespace ProAgil.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Evento>> Get(int id)
         {
-            return await _context.Eventos.FirstOrDefaultAsync(x => x.EventoId == id);
+            return await _context.Eventos.FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }
