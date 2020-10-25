@@ -9,7 +9,9 @@ import { EventosComponent } from './eventos/eventos.component';
 import { HttpClientModule} from '@angular/common/http';
 import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,9 @@ import { FormsModule } from '@angular/forms';
    ],
   imports: [
     BrowserModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     FormsModule
