@@ -14,13 +14,13 @@ defineLocale('pt-br', ptBrLocale);
   templateUrl: './eventos.component.html',
   styleUrls: ['./eventos.component.scss']
 })
+
 export class EventosComponent implements OnInit {
 
   _filtroLista = '';
 
   eventos: Evento[];
   eventosFiltrados: Evento[];
-  modalRef: BsModalRef;
   registerForm: FormGroup;
 
   constructor(
@@ -38,8 +38,8 @@ export class EventosComponent implements OnInit {
     this.getEventos();
   }
 
-  openModal(template: TemplateRef<any>){
-    this.modalRef = this.modalService.show(template);
+  openModal(template: any){
+    template.show();
   }
 
   get filtroLista(): string{
