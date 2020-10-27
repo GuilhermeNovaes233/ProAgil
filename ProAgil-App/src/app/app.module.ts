@@ -33,7 +33,8 @@ import { DateTimeFormatPipePipe } from './_helpers/DateTimeFormatPipe.pipe';
     ModalModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     EventoService

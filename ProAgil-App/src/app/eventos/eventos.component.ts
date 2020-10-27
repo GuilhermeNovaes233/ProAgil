@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { EventoService } from '../services/evento.service';
 import { Evento } from '../_models/Evento';
@@ -16,7 +16,7 @@ export class EventosComponent implements OnInit {
   eventos: Evento[];
   eventosFiltrados: Evento[];
   modalRef: BsModalRef;
-
+  registerForm: FormGroup;
 
   constructor(
       private eventoService: EventoService,
@@ -57,5 +57,21 @@ export class EventosComponent implements OnInit {
             console.log(error);
         }
     );
+  }
+
+  validation(){
+    this.registerForm = new FormGroup({
+      tema: new FormControl,
+      local: new FormControl,
+      dataEvento: new FormControl,
+      qtdPessoas: new FormControl,
+      imagemURL: new FormControl,
+      telefone: new FormControl,
+      email: new FormControl,
+    });
+  }
+
+  salvarAlteracao(){
+
   }
 }
