@@ -27,6 +27,7 @@ import { DateTimeFormatPipePipe } from './_helpers/DateTimeFormatPipe.pipe';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),
     TooltipModule.forRoot(),
