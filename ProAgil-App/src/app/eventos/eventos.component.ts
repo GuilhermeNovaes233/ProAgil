@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { EventoService } from '../services/evento.service';
 import { Evento } from '../_models/Evento';
@@ -20,10 +20,12 @@ export class EventosComponent implements OnInit {
 
   constructor(
       private eventoService: EventoService,
-      private modalService: BsModalService
+      private modalService: BsModalService,
+      private fb: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.validation();
     this.getEventos();
   }
 
@@ -59,15 +61,15 @@ export class EventosComponent implements OnInit {
     );
   }
 
-  validation(){
-    this.registerForm = new FormGroup({
-      tema: new FormControl,
-      local: new FormControl,
-      dataEvento: new FormControl,
-      qtdPessoas: new FormControl,
-      imagemURL: new FormControl,
-      telefone: new FormControl,
-      email: new FormControl,
+  validation() {
+    this.registerForm = this.fb.group({
+      tema: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
+      local: ['', Validators.required],
+      dataEvento: ['', Validators.required],
+      imagemURL: ['', Validators.required],
+      qtdPessoas: ['', [Validators.required, Validators.max(10000)]],
+      telefone: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]]
     });
   }
 
