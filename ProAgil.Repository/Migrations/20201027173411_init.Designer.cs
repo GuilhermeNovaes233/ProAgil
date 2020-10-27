@@ -9,7 +9,7 @@ using ProAgil.Repository;
 namespace ProAgil.Repository.Migrations
 {
     [DbContext(typeof(ProAgilContext))]
-    [Migration("20201025045433_init")]
+    [Migration("20201027173411_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,20 +84,20 @@ namespace ProAgil.Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Email")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("ImagemUrl")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ImagemUrl")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Resumo")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Resumo")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("Telefone")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Telefone")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -148,7 +148,7 @@ namespace ProAgil.Repository.Migrations
 
             modelBuilder.Entity("ProAgil.Domain.Lote", b =>
                 {
-                    b.HasOne("ProAgil.Domain.Evento", "Evento")
+                    b.HasOne("ProAgil.Domain.Evento", null)
                         .WithMany("Lotes")
                         .HasForeignKey("EventoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -172,11 +172,11 @@ namespace ProAgil.Repository.Migrations
 
             modelBuilder.Entity("ProAgil.Domain.RedeSocial", b =>
                 {
-                    b.HasOne("ProAgil.Domain.Evento", "Evento")
+                    b.HasOne("ProAgil.Domain.Evento", null)
                         .WithMany("RedesSociais")
                         .HasForeignKey("EventoId");
 
-                    b.HasOne("ProAgil.Domain.Palestrante", "Palestrante")
+                    b.HasOne("ProAgil.Domain.Palestrante", null)
                         .WithMany("RedesSociais")
                         .HasForeignKey("PalestranteId");
                 });

@@ -32,10 +32,10 @@ namespace ProAgil.Repository.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Nome = table.Column<string>(nullable: true),
-                    Resumo = table.Column<int>(nullable: false),
-                    ImagemUrl = table.Column<int>(nullable: false),
-                    Telefone = table.Column<int>(nullable: false),
-                    Email = table.Column<int>(nullable: false)
+                    Resumo = table.Column<string>(nullable: true),
+                    ImagemUrl = table.Column<string>(nullable: true),
+                    Telefone = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
