@@ -49,3 +49,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+.vscode/launch.json
+.vscode/tasks.json
+ProAgil.API/.vscode/launch.json
+ProAgil.API/.vscode/tasks.json

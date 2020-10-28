@@ -20,6 +20,7 @@ export class EventosComponent implements OnInit {
   _filtroLista = '';
 
   eventos: Evento[];
+  evento: Evento;
   eventosFiltrados: Evento[];
   registerForm: FormGroup;
 
@@ -75,14 +76,24 @@ export class EventosComponent implements OnInit {
       tema: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
       local: ['', Validators.required],
       dataEvento: ['', Validators.required],
-      imagemURL: ['', Validators.required],
       qtdPessoas: ['', [Validators.required, Validators.max(10000)]],
       telefone: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]
     });
   }
 
-  salvarAlteracao(){
-
+  salvarAlteracao(template: any) {
+    if (this.registerForm.valid) {
+        this.evento = Object.assign({}, this.registerForm.value);
+        this.eventoService.postEvento(this.evento).subscribe(
+          (novoEvento: Evento) => {
+            template.hide();
+            this.getEventos();
+            console.log(novoEvento);
+          }, error => {
+            console.log(error);
+          }
+        );
+    }
   }
 }
