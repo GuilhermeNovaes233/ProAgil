@@ -21,6 +21,8 @@ export class EventosComponent implements OnInit {
 
   eventos: Evento[];
   evento: Evento;
+  modoSalvar = '';
+  bodyDeletarEvento = '';
   eventosFiltrados: Evento[];
   registerForm: FormGroup;
 
@@ -41,6 +43,18 @@ export class EventosComponent implements OnInit {
 
   openModal(template: any){
     template.show();
+  }
+
+  editarEvento(evento: Evento, template: any){
+    this.modoSalvar = 'put';
+    this.openModal(template);
+    this.evento = evento;
+    this.registerForm.patchValue(evento);
+  }
+
+  novoEvento(template: any){
+    this.modoSalvar = 'post';
+    this.openModal(template);
   }
 
   get filtroLista(): string{
@@ -82,8 +96,27 @@ export class EventosComponent implements OnInit {
     });
   }
 
+  excluirEvento(evento: Evento, template: any) {
+    this.openModal(template);
+    this.evento = evento;
+    this.bodyDeletarEvento = `Tem certeza que deseja excluir o Evento: ${evento.tema}, Código: ${evento.id}`;
+  }
+
+  confirmeDelete(template: any) {
+    this.eventoService.deleteEvento(this.evento).subscribe(
+      () => {
+        template.hide();
+        this.getEventos();
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
+
   salvarAlteracao(template: any) {
     if (this.registerForm.valid) {
+
+      if(this.modoSalvar === 'post'){
         this.evento = Object.assign({}, this.registerForm.value);
         this.eventoService.postEvento(this.evento).subscribe(
           (novoEvento: Evento) => {
@@ -94,6 +127,18 @@ export class EventosComponent implements OnInit {
             console.log(error);
           }
         );
+      }
+      else{
+        this.evento = Object.assign({id: this.evento.id}, this.registerForm.value);
+        this.eventoService.putEvento(this.evento).subscribe(
+          () => {
+            template.hide();
+            this.getEventos();
+          }, error => {
+            console.log(error);
+          }
+        );
+      }
     }
   }
 }
