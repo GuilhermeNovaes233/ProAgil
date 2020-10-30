@@ -1,9 +1,11 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProAgil.API.Helpers;
 using ProAgil.Repository;
 
 namespace ProAgil.API
@@ -22,6 +24,8 @@ namespace ProAgil.API
         {
             services.AddDbContext<ProAgilContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
+
+            services.AddAutoMapper(typeof(AutoMapperProfiles));
 
             services.AddScoped<IProAgilRepository,ProAgilRepository>();
             
