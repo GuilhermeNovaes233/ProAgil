@@ -53,12 +53,14 @@ namespace ProAgil.API.Controllers
             }
         }
 
-        [HttpGet("getByTema/{EventoId}")]
+        [HttpGet("getByTema/{tema}")]
         public async Task<IActionResult> Get(string tema)
         {
             try
             {
-                var results = await _repository.GetAllEventosAsyncByTema(tema, true);
+                var eventos = await _repository.GetAllEventosAsyncByTema(tema, true);
+                var results = _mapper.Map<IEnumerable<EventoDto>>(eventos);
+
                 return Ok(results);
             }
             catch (System.Exception)
@@ -68,11 +70,14 @@ namespace ProAgil.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Evento model)
+        public async Task<IActionResult> Post(EventoDto model)
         {
             try
             {
-                _repository.Add(model);
+                //Mapeamento inverso -> Dto para Evento
+                var evento = _mapper.Map<Evento>(model);
+
+                _repository.Add(evento);
 
                 if (await _repository.SaveChancesAsync())
                 {
