@@ -9,20 +9,25 @@ import { HttpClientModule} from '@angular/common/http';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { EventoService } from './services/evento.service';
+import { EventoService } from './_services/evento.service';
 
 import { AppComponent } from './app.component';
 import { EventosComponent } from './eventos/eventos.component';
 import { NavComponent } from './nav/nav.component';
+import { PalestrantesComponent } from './palestrantes/palestrantes.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ContatosComponent } from './contatos/contatos.component';
 
 import { DateTimeFormatPipePipe } from './_helpers/DateTimeFormatPipe.pipe';
-
 @NgModule({
   declarations: [
     AppComponent,
     EventosComponent,
     NavComponent,
-    DateTimeFormatPipePipe
+    PalestrantesComponent,
+    DashboardComponent,
+    ContatosComponent,
+    DateTimeFormatPipePipe,
    ],
   imports: [
     BrowserModule,
