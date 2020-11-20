@@ -8,6 +8,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { HttpClientModule} from '@angular/common/http';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { EventoService } from './_services/evento.service';
 
@@ -27,11 +28,17 @@ import { DateTimeFormatPipePipe } from './_helpers/DateTimeFormatPipe.pipe';
     PalestrantesComponent,
     DashboardComponent,
     ContatosComponent,
-    DateTimeFormatPipePipe,
+    DateTimeFormatPipePipe
    ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+        timeOut: 10000,
+        positionClass: 'toast-bottom-right',
+        preventDuplicates: true
+      }
+    ),
     BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),

@@ -6,6 +6,7 @@ import { Evento } from '../_models/Evento';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
+import { ToastrService } from 'ngx-toastr';
 
 defineLocale('pt-br', ptBrLocale);
 
@@ -30,7 +31,8 @@ export class EventosComponent implements OnInit {
       private eventoService: EventoService,
       private modalService: BsModalService,
       private fb: FormBuilder,
-      private localeService: BsLocaleService
+      private localeService: BsLocaleService,
+      private toastr: ToastrService
   ) {
 
       this.localeService.use('pt-br');
@@ -97,6 +99,7 @@ export class EventosComponent implements OnInit {
   }
 
   excluirEvento(evento: Evento, template: any) {
+
     this.openModal(template);
     this.evento = evento;
     this.bodyDeletarEvento = `Tem certeza que deseja excluir o Evento: ${evento.tema}, Código: ${evento.id}`;
@@ -107,8 +110,9 @@ export class EventosComponent implements OnInit {
       () => {
         template.hide();
         this.getEventos();
+        this.toastr.success('Item Deletado com Sucesso');
       }, error => {
-        console.log(error);
+        this.toastr.error('Erro ao deletar');
       }
     );
   }
@@ -122,9 +126,9 @@ export class EventosComponent implements OnInit {
           (novoEvento: Evento) => {
             template.hide();
             this.getEventos();
-            console.log(novoEvento);
+            this.toastr.success('Item inserido com Sucesso');
           }, error => {
-            console.log(error);
+            this.toastr.error('Erro ao inserir ${error}');
           }
         );
       }
@@ -134,8 +138,9 @@ export class EventosComponent implements OnInit {
           () => {
             template.hide();
             this.getEventos();
+            this.toastr.success('Item Editado com Sucesso');
           }, error => {
-            console.log(error);
+            this.toastr.error('Erro ao editar ${error}');
           }
         );
       }
