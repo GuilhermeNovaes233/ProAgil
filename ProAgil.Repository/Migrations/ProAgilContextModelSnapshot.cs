@@ -28,6 +28,9 @@ namespace ProAgil.Repository.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ImagemURL")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Local")
                         .HasColumnType("TEXT");
 

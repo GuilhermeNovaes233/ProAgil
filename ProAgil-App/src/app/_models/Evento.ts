@@ -11,6 +11,7 @@ export class Evento {
     dataEvento: Date;
     tema: string;
     qtdPessoas: number;
+    imagemURL: string;
     telefone: string;
     email: string;
     lotes: Lote[];
