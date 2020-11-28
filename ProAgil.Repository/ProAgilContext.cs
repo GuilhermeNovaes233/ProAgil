@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ProAgil.Domain;
 
 namespace ProAgil.Repository
 {
-    public class ProAgilContext : DbContext
+    public class ProAgilContext : IdentityDbContext
     {
         public ProAgilContext(DbContextOptions<ProAgilContext> option) : base(option){}
 
