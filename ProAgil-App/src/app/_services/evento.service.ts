@@ -9,14 +9,13 @@ import { Evento } from '../_models/Evento';
 export class EventoService {
 
   baseUrl = 'https://localhost:5001/evento';
-  tokenHeader: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.tokenHeader = new HttpHeaders({'Authorization': `Bearer ${localStorage.getItem('token')}`});
+
   }
 
   getAllEvento(): Observable<Evento[]>{
-    return this.http.get<Evento[]>(this.baseUrl, { headers: this.tokenHeader} );
+    return this.http.get<Evento[]>(this.baseUrl);
   }
 
   getEventoByTema(tema: string): Observable<Evento[]> {
@@ -33,12 +32,12 @@ export class EventoService {
     const formData = new FormData();
     formData.append('file', fileToUplaod, name);
 
-    return this.http.post(`${this.baseUrl}/upload`, formData, { headers: this.tokenHeader});
+    return this.http.post(`${this.baseUrl}/upload`, formData);
   }
 
   postEvento(evento: Evento) {
     console.log(evento);
-    return this.http.post(this.baseUrl, evento, { headers: this.tokenHeader});
+    return this.http.post(this.baseUrl, evento);
   }
 
   putEvento(evento: Evento) {
