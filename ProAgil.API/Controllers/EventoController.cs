@@ -46,7 +46,7 @@ namespace ProAgil.API.Controllers
         [HttpPost("upload")]
         public async Task<IActionResult> Upload()
         {
-            try
+                        try
             {
                 var file = Request.Form.Files[0];
                 var folderName = Path.Combine("Resources", "Images");
@@ -138,6 +138,23 @@ namespace ProAgil.API.Controllers
             {
                 var evento = await _repo.GetEventosAsyncById(eventoId, false);
                 if (evento == null) return NotFound();
+
+                var idLotes = new List<int>();
+                var idRedesSociais = new List<int>();
+
+                model.Lotes.ForEach(item => idLotes.Add(item.Id));
+                model.RedesSociais.ForEach(item => idRedesSociais.Add(item.Id));
+
+                var lotes = evento.Lotes.Where(
+                    lote => !idLotes.Contains(lote.Id)
+                ).ToArray();
+
+                var redesSociais = evento.RedesSociais.Where(
+                    rede => !idLotes.Contains(rede.Id)
+                ).ToArray();
+
+                if (lotes.Length > 0) _repo.DeleteRange(lotes);
+                if (redesSociais.Length > 0) _repo.DeleteRange(redesSociais);
 
                 _mapper.Map(model, evento);
 
