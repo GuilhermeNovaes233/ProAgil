@@ -26,6 +26,7 @@ import { LoginComponent } from './user/login/login.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxCurrencyModule } from "ngx-currency";
 
 import { DateTimeFormatPipePipe } from './_helpers/DateTimeFormatPipe.pipe';
 
@@ -42,7 +43,7 @@ import { DateTimeFormatPipePipe } from './_helpers/DateTimeFormatPipe.pipe';
     TituloComponent,
     UserComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
    ],
   imports: [
     BrowserModule,
@@ -63,7 +64,8 @@ import { DateTimeFormatPipePipe } from './_helpers/DateTimeFormatPipe.pipe';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxCurrencyModule
   ],
   providers: [
     EventoService,
