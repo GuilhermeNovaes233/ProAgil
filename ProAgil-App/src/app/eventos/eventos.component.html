@@ -66,6 +66,11 @@
           </button>
         </div>
       </td>
+      <td>
+        <a [routerLink]="['/evento', evento.id, 'edit']" tooltip="Edição Detalhada" class="btn btn-sm btn-warning">
+          <i class="fa fa-edit"></i>
+        </a>
+      </td>
     </tr>
   </tbody>
   <tfoot *ngIf="!eventos.length">

@@ -15,6 +15,7 @@ import { EventoService } from './_services/evento.service';
 
 import { AppComponent } from './app.component';
 import { EventosComponent } from './eventos/eventos.component';
+import { EventoEditComponent } from './eventos/eventoEdit/eventoEdit.component';
 import { NavComponent } from './nav/nav.component';
 import { PalestrantesComponent } from './palestrantes/palestrantes.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -23,6 +24,8 @@ import { TituloComponent } from './_shared/titulo/titulo.component';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegistrationComponent } from './user/registration/registration.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 import { DateTimeFormatPipePipe } from './_helpers/DateTimeFormatPipe.pipe';
 
@@ -30,6 +33,7 @@ import { DateTimeFormatPipePipe } from './_helpers/DateTimeFormatPipe.pipe';
   declarations: [
     AppComponent,
     EventosComponent,
+    EventoEditComponent,
     NavComponent,
     PalestrantesComponent,
     DashboardComponent,
@@ -49,6 +53,8 @@ import { DateTimeFormatPipePipe } from './_helpers/DateTimeFormatPipe.pipe';
         preventDuplicates: true
       }
     ),
+    NgxMaskModule.forRoot(),
+    TabsModule.forRoot(),
     BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),
